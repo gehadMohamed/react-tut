@@ -59,14 +59,17 @@ function App() {
   if (displayState) {
       turtles = (
         <div>
-          <Turtle 
-            name= {turtlesState.turtles[0].name} 
-            color="blue" 
-            power="90" 
-            click={() => switchNameHandler('LeoN')} 
-            change={changeNameHandler}
-            >The leader</Turtle>
-        <Turtle name="raphael" color="red" power="120">Hot head</Turtle>
+          {
+            turtlesState.turtles.map((turtle,index) => {
+              return <Turtle 
+                name= {turtle.name} 
+                color={turtle.color}
+                power={turtle.power}
+              >
+                {turtle.desc}
+                </Turtle>
+            })
+          }
       </div>
     );
   }
