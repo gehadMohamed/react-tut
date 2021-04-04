@@ -8,10 +8,9 @@ function App() {
   const [turtlesState, setTurtles] = useState(
     {
       turtles: [
-        {name: "Leonardo",color: "blue" ,power:90, desc: "The leader"},
-        {name: "raphael",color: "red" ,power:120, desc: "Hot head"}
-      ],
-      title: ""
+        {id:1, name: "Leonardo",color: "blue" ,power:90, desc: "The leader"},
+        {id:2, name: "raphael",color: "red" ,power:120, desc: "Hot head"}
+      ]
     }
   );
 
@@ -22,26 +21,20 @@ function App() {
   }
 
 
-  const switchNameHandler = (name) => {
-    // DON'T DO THAT (this.state.persons[0].name = "Nuha")    
-    //  notice warning in console, you need to use setState
-        const leoNickName = typeof name == 'string'? name : "LEO!!";    
+  const changeNameHandler = (event, turtleId) => {
+        const turtleIndex = turtlesState.turtles.findIndex(t => t.id === turtleId);
+        // spread operator object
+        const turtle = {...turtlesState.turtles[turtleIndex]};
+    
+        // update the name
+        turtle.name = event.target.value;
+    
+        const turtles = [...turtlesState.turtles];
+        turtles[turtleIndex] = turtle;
 
         setTurtles({
-            turtles: [
-              {name: leoNickName ,color: "blue" ,power:90, desc: "The leader"},
-              {name: "raphael",color: "red" ,power:120, desc: "Hot head"}
-            ]            
+          turtles: turtles
         });
-      }
-
-    const changeNameHandler = (event) => {
-      setTurtles({
-        turtles: [
-          {name: event.target.value ,color: "blue" ,power:90, desc: "The leader"},
-          {name: "raphael",color: "red" ,power:120, desc: "Hot head"}
-        ]            
-    });
   }
       
 
@@ -60,11 +53,13 @@ function App() {
       turtles = (
         <div>
           {
-            turtlesState.turtles.map((turtle,index) => {
+            turtlesState.turtles.map((turtle) => {
               return <Turtle 
                 name= {turtle.name} 
                 color={turtle.color}
                 power={turtle.power}
+                key={turtle.id}
+                change={event => changeNameHandler(event, turtle.id)}
               >
                 {turtle.desc}
                 </Turtle>
