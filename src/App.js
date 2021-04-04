@@ -1,6 +1,5 @@
-import logo from './logo.svg';
-import './App.css';
-import Turtle from './Turtle/Turtle';
+
+import Turtle from './Turtle/Turtle.js';
 
 function App() {
   return (
