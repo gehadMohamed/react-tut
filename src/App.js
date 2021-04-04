@@ -32,7 +32,7 @@ function App() {
       <div className="App">
         <h1>TMNT</h1>
         <button onClick={switchNameHandler}>Switch Name</button>
-        <Turtle name= {turtlesState.turtles[0].name} color="blue" power="90" click={() => switchNameHandler('LeoN')}>The leader</Turtle>
+        <Turtle name= {turtlesState.turtles[0].name} color="blue" power="90" click={switchNameHandler.bind(this,'LeoN')}>The leader</Turtle>
         <Turtle name="raphael" color="red" power="120">Hot head</Turtle>
       </div>
   );
