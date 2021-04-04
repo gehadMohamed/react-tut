@@ -28,11 +28,26 @@ function App() {
         });
       }
 
+    const changeNameHandler = (event) => {
+      setTurtles({
+        turtles: [
+          {name: event.target.value ,color: "blue" ,power:90, desc: "The leader"},
+          {name: "raphael",color: "red" ,power:120, desc: "Hot head"}
+        ]            
+    });
+  }
+      
     return (
       <div className="App">
         <h1>TMNT</h1>
         <button onClick={switchNameHandler}>Switch Name</button>
-        <Turtle name= {turtlesState.turtles[0].name} color="blue" power="90" click={switchNameHandler.bind(this,'LeoN')}>The leader</Turtle>
+        <Turtle 
+            name= {turtlesState.turtles[0].name} 
+            color="blue" 
+            power="90" 
+            click={() => switchNameHandler('LeoN')} 
+            change={changeNameHandler}
+            >The leader</Turtle>
         <Turtle name="raphael" color="red" power="120">Hot head</Turtle>
       </div>
   );
