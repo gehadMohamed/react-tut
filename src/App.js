@@ -53,24 +53,29 @@ function App() {
     cursor: 'pointer'
   }
 
+
+  let turtles = null;
+
+  if (displayState) {
+      turtles = (
+        <div>
+          <Turtle 
+            name= {turtlesState.turtles[0].name} 
+            color="blue" 
+            power="90" 
+            click={() => switchNameHandler('LeoN')} 
+            change={changeNameHandler}
+            >The leader</Turtle>
+        <Turtle name="raphael" color="red" power="120">Hot head</Turtle>
+      </div>
+    );
+  }
+
     return (
       <div className="App">
         <h1>TMNT</h1>
         <button style={buttonStyle} onClick={toggelDisplayHandler}>Switch Name</button>
-        {
-          displayState ?
-          <div>
-            <Turtle 
-                name= {turtlesState.turtles[0].name} 
-                color="blue" 
-                power="90" 
-                click={() => switchNameHandler('LeoN')} 
-                change={changeNameHandler}
-                >The leader</Turtle>
-            <Turtle name="raphael" color="red" power="120">Hot head</Turtle>
-          </div> :
-          null
-        }
+        {turtles}
       </div>
   );
 }
