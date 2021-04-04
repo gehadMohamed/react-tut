@@ -37,10 +37,19 @@ function App() {
     });
   }
       
+
+  const buttonStyle = {
+    backgroundColor: 'white',
+    font: 'inherit',
+    border: '1x solid blue',
+    padding: '8px',
+    cursor: 'pointer'
+  }
+
     return (
       <div className="App">
         <h1>TMNT</h1>
-        <button onClick={switchNameHandler}>Switch Name</button>
+        <button style={buttonStyle} onClick={switchNameHandler}>Switch Name</button>
         <Turtle 
             name= {turtlesState.turtles[0].name} 
             color="blue" 
